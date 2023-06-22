@@ -20,9 +20,20 @@ public class Video extends Recurso {
         } else if (url.length() < 4) {
             throw new IllegalArgumentException("Formato de arquivo invalido, insira ou .mp4, .mov, .wmv");
         }
-        if (url == ".wmv" || url == ".mov" || url == ".mp4"){
+        if (url.equals(".wmv") || url.equals(".mov") || url.equals(".mp4")){
             return true;
         }
         throw new IllegalArgumentException("Formato de arquivo invalido, insira ou .mp4, .mov, .wmv");
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getFrame_rate() {
+        return frame_rate;
+    }
+    public String getUrl_recurso() {
+        return url_recurso;
     }
 }
