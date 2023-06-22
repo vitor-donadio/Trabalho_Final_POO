@@ -27,6 +27,7 @@ public class Main {
         System.out.println(foto1.getUrl_recurso());
         System.out.print("Resolucao da foto: ");
         System.out.println(foto1.getResolucao());
+        System.out.println(" ");
         System.out.println("================= TENTATIVA 2 =================");
         Video video1 = new Video(60,160, "Shrek2.mp4");
         PostVideo postVideo = new PostVideo(video1);
@@ -45,5 +46,6 @@ public class Main {
         System.out.println(video1.getUrl_recurso());
         System.out.print("Frame rate do video: ");
         System.out.println(video1.getFrame_rate());
+        System.out.println(" ");
     }
 }
