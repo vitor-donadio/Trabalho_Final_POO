@@ -14,6 +14,7 @@ public class Comentario {
         this.tamanho = new_tamanho;
         this.texto = new_texto;
     }
+
     //Metodos set e get:
     public int getTamanho() {
         return tamanho;
@@ -31,9 +32,6 @@ public class Comentario {
 
     //A edição do comentario é permitida porem a data é atualizada para o momento da edição, com exeção do fixado
 
-    public void setFixado(boolean fixado) {
-        this.fixado = fixado;
-    }
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
         this.data = LocalDateTime.now();

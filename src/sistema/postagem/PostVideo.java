@@ -11,11 +11,16 @@ public class PostVideo implements Postavel{
     private LocalDateTime data_postagem;
     private List<Comentario> lista_comentarios = new ArrayList<>();
     private int qtde_fixados = 0;
+
     public PostVideo(){        // Construtor sem video
     }
+
     public PostVideo(Video new_video){  // Override do construtor com video
-        this.video = new_video;
+        if (new_video.validaUrlRecurso(new_video.getUrl_recurso())) {
+            this.video = new_video;
+        }
     }
+
     public boolean adicicionaVideo(Video new_video){    //Parametro adicionado para que o metodo possa receber um video.
         if (this.video == null) {    //Caso não haja videos vinculados
             this.video = new_video;
@@ -25,13 +30,20 @@ public class PostVideo implements Postavel{
             throw new IndexOutOfBoundsException("Limite de um video por postagem"); //Não sei se esta correto
         }
     }
+
     public boolean posta() {
-        if (this.video == null){
-            throw new NullPointerException("Não há video ligado a postagem"); // Exeção quando o valor do video for null
+        try {
+            if (this.video == null) {
+                throw new NullPointerException(); // Exeção quando o valor do video for null
+            }
+        }catch (NullPointerException e){
+            System.out.println("Nao ha video ligado a postagem");
+            return false;
         }
         this.data_postagem = LocalDateTime.now();
         return true;
     }
+
     public boolean comenta() {
         Scanner sc = new Scanner(System.in);
         String texto = sc.nextLine();

@@ -8,12 +8,16 @@ import sistema.postagem.Postavel;
 public class Main {
     public static void main(String[] args){
         System.out.println("================= TENTATIVA 1 =================");
-        Foto foto1 = new Foto("1500x1000","Foto_com_um_Pikachu_fofinho.png");
-        PostFoto postFoto = new PostFoto(foto1, "Kanto");
-        //PostavelFactory postavelFactory = new PostavelFactory();
-        //Postavel postFoto = postavelFactory.getPostavel("POSTFOTO");
-
-        if (postFoto.posta()) System.out.println("Postagem feita com sucesso");
+        Foto foto1 = new Foto("1500x1000","Foto_com_um_Pikachu.png");
+        //PostFoto postFoto = new PostFoto(foto1, "Kanto");
+        PostFoto postFoto = (PostFoto) PostavelFactory.getPostavel("POSTFOTO");
+        postFoto.adicicionaFoto(foto1);
+        postFoto.setLocalizacao("Kanto");
+        if (postFoto.posta()){
+            System.out.println("Postagem feita com sucesso");
+        }else {
+            System.out.println("Falha ao postar");
+        }
         System.out.print("Lista de fotos: ");
         System.out.println(postFoto.getFotos());
         System.out.print("Quantidade de fotos: ");
@@ -34,7 +38,7 @@ public class Main {
         System.out.println(foto1.getResolucao());
         System.out.println(" ");
         System.out.println("================= TENTATIVA 2 =================");
-        Video video1 = new Video(60,160, "Shrek2.mp4");
+        Video video1 = new Video(60,160, "Shrek2.mm4");
         PostVideo postVideo = new PostVideo(video1);
         if(postVideo.posta()) System.out.println("Postagem feita com sucesso");
         System.out.print("Video: ");

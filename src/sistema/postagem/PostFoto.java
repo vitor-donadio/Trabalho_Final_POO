@@ -14,13 +14,18 @@ public class PostFoto implements Postavel {
         private LocalDateTime data_postagem;
         private List<Comentario> listaComentarios = new ArrayList<>();
         private int qtde_fixados = 0;
+
         public PostFoto(){        // Construtor vazio sem foto
         }
+
         public PostFoto(Foto new_foto, String new_localizacao){    // Override do construtor atribuindo foto
-            this.localizacao = new_localizacao;
-            fotos.add(new_foto); //Precisa do this?
-            this.qtde_fotos++;
+            if (new_foto.validaUrlRecurso(new_foto.getUrl_recurso())){
+                this.localizacao = new_localizacao;
+                fotos.add(new_foto); //Precisa do this?
+                this.qtde_fotos++;
+            }
         }
+
         public boolean adicicionaFoto(Foto new_foto){   //Parametro adicionado para que o metodo possa receber uma foto.
             if (qtde_fotos <= 10) {     //Caso haja espaço para fotos
                 fotos.add(new_foto);
@@ -30,6 +35,7 @@ public class PostFoto implements Postavel {
                 throw new ArrayIndexOutOfBoundsException("Fora do limite de 10 fotos"); //Exception para evitar a tentativa de indexar argumentos alem da capacidade da Array
             }
         }
+
         public boolean removeFoto(Foto new_foto) {
             if(fotos.contains(new_foto)) {
                 fotos.remove(new_foto);
@@ -39,6 +45,7 @@ public class PostFoto implements Postavel {
             //return false; Exception foto não encontrada?
             throw new NullPointerException("Esta foto não esta ligado a postagem"); //Não sei se e a Exception correta
         }
+
         public boolean posta() {
             if (qtde_fotos < 1){
                 throw new NullPointerException("Nao ha foto ligado a postagem");
@@ -46,14 +53,18 @@ public class PostFoto implements Postavel {
             this.data_postagem = LocalDateTime.now();
             return true;
         }
+
         public boolean comenta() {
             Scanner sc = new Scanner(System.in);
             String texto = sc.nextLine();
-            int tamanho = sc.nextInt();
-            boolean fixado = sc.hasNextBoolean();
+            int tamanho = texto.length();
+            boolean fixado = sc.nextBoolean();
             Comentario comentario = new Comentario(texto, tamanho, fixado);
-            this.listaComentarios.add(comentario);
-            if(fixado) this.qtde_fixados += 1;
+            if(fixado) {
+                this.listaComentarios.add(comentario);
+                this.qtde_fixados += 1;
+
+            }
             return true;
         }
 
