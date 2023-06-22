@@ -36,7 +36,8 @@ public class PostFoto implements Postavel {
                 this.qtde_fotos -= 1;
                 return true;
             }
-            return false; //Exception foto não encontrada?
+            //return false; Exception foto não encontrada?
+            throw new NullPointerException("Esta foto não esta ligado a postagem"); //Não sei se e a Exception correta
         }
         public boolean posta() {
             if (qtde_fotos < 1){

@@ -22,7 +22,7 @@ public class PostVideo implements Postavel{
             return true;
         } else {
             //return false; Não ha nescessidade de exeção?
-            throw new IndexOutOfBoundsException("Limite de um video por postagem");
+            throw new IndexOutOfBoundsException("Limite de um video por postagem"); //Não sei se esta correto
         }
     }
     public boolean posta() {
