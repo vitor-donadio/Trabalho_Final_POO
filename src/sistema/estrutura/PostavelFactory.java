@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class PostavelFactory {
 
     public static Postavel getPostavel(String post_tipo){
-        if(post_tipo.equals("POSTVIDEO")){
-            return new PostVideo();
-        } else if (post_tipo.equals("POSTFOTO")) {
-            return new PostFoto();
-        }
         try {
+            if (post_tipo.equals("POSTVIDEO")) {
+                return new PostVideo();
+            } else if (post_tipo.equals("POSTFOTO")) {
+                return new PostFoto();
+            }
             throw new IllegalArgumentException();
-        }catch (IllegalArgumentException e){
-            System.out.println("Argumentos Invalido.%nInsira POSTVIDEO ou POSTFOTO");
-            return null;
+        } catch (IllegalArgumentException e) {
+        System.out.println("Argumentos Invalido.%nInsira POSTVIDEO ou POSTFOTO");
+        return null;
         }
     }
 }

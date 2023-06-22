@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PostVideo implements Postavel{
-    private Video video = null;
+    private Video video;
     private LocalDateTime data_postagem;
     private List<Comentario> lista_comentarios = new ArrayList<>();
     private int qtde_fixados = 0;
@@ -15,19 +15,27 @@ public class PostVideo implements Postavel{
     public PostVideo(){        // Construtor sem video
     }
 
-    public PostVideo(Video new_video){  // Override do construtor com video
+    public PostVideo(Video new_video){  // Override do construtor com video (Obsoleto pelo Factory)
         if (new_video.validaUrlRecurso(new_video.getUrl_recurso())) {
             this.video = new_video;
         }
     }
 
     public boolean adicicionaVideo(Video new_video){    //Parametro adicionado para que o metodo possa receber um video.
-        if (this.video == null) {    //Caso não haja videos vinculados
-            this.video = new_video;
-            return true;
-        } else {
-            //return false; Não ha nescessidade de exeção?
-            throw new IndexOutOfBoundsException("Limite de um video por postagem"); //Não sei se esta correto
+        if(new_video.validaUrlRecurso(new_video.getUrl_recurso())){
+            try {
+                if (this.video == null) {    //Caso não haja videos vinculados
+                    this.video = new_video;
+                    return true;
+                } else {
+                    throw new IndexOutOfBoundsException(); //Não sei se esta correto
+                }
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("Limite de um video por postagem");
+                return false;
+            }
+        }else {
+            return false;
         }
     }
 
@@ -46,12 +54,17 @@ public class PostVideo implements Postavel{
 
     public boolean comenta() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Texto do comentario: ");
         String texto = sc.nextLine();
-        int tamanho = sc.nextInt();
-        boolean fixado = sc.hasNextBoolean();
-        Comentario comentario = new Comentario(texto, tamanho, fixado);
-        this.lista_comentarios.add(comentario);
-        if(fixado) qtde_fixados += 1;
+        System.out.println("fixado? true/false: ");// Talvez seja necessario colocar uma exception
+        boolean fixado = sc.nextBoolean();
+        Comentario comentario = new Comentario(texto, fixado);
+        if(fixado) {
+            this.lista_comentarios.add(qtde_fixados, comentario); //Nao sei se ta certo
+            this.qtde_fixados += 1;
+        }else {
+            this.lista_comentarios.add(comentario);
+        }
         return true;
     }
 

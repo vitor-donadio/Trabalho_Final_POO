@@ -18,37 +18,56 @@ public class PostFoto implements Postavel {
         public PostFoto(){        // Construtor vazio sem foto
         }
 
-        public PostFoto(Foto new_foto, String new_localizacao){    // Override do construtor atribuindo foto
+        public PostFoto(Foto new_foto, String new_localizacao){    // Override do construtor atribuindo foto (Construtor obsoleto por conta do Factory)
             if (new_foto.validaUrlRecurso(new_foto.getUrl_recurso())){
                 this.localizacao = new_localizacao;
-                fotos.add(new_foto); //Precisa do this?
+                fotos.add(new_foto);
                 this.qtde_fotos++;
             }
         }
 
         public boolean adicicionaFoto(Foto new_foto){   //Parametro adicionado para que o metodo possa receber uma foto.
-            if (qtde_fotos <= 10) {     //Caso haja espaço para fotos
-                fotos.add(new_foto);
-                this.qtde_fotos += 1;
-                return true;
-            } else {
-                throw new ArrayIndexOutOfBoundsException("Fora do limite de 10 fotos"); //Exception para evitar a tentativa de indexar argumentos alem da capacidade da Array
+            if (new_foto.validaUrlRecurso(new_foto.getUrl_recurso())) {
+                try {
+                    if (qtde_fotos <= 10) {     //Caso haja espaço para fotos
+                        fotos.add(new_foto);
+                        this.qtde_fotos += 1;
+                        return true;
+                    } else {
+                        throw new ArrayIndexOutOfBoundsException(); //Exception para evitar a tentativa de indexar argumentos alem da capacidade da Array
+                    }
+                }catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("Ultrapassou do limite de 10 fotos");
+                    return false;
+                }
+            }else {
+                return false;
             }
         }
 
         public boolean removeFoto(Foto new_foto) {
-            if(fotos.contains(new_foto)) {
-                fotos.remove(new_foto);
-                this.qtde_fotos -= 1;
-                return true;
+            try {
+                if (fotos.contains(new_foto)) {
+                    fotos.remove(new_foto);
+                    this.qtde_fotos -= 1;
+                    return true;
+                } else {
+                    throw new ArrayIndexOutOfBoundsException(); //Não sei se e a Exception correta
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Foto não existe dentro da postagem");
+                return false;
             }
-            //return false; Exception foto não encontrada?
-            throw new NullPointerException("Esta foto não esta ligado a postagem"); //Não sei se e a Exception correta
         }
 
         public boolean posta() {
-            if (qtde_fotos < 1){
-                throw new NullPointerException("Nao ha foto ligado a postagem");
+            try {
+                if (qtde_fotos < 1) {
+                    throw new ArithmeticException();
+                }
+            }catch (ArithmeticException e){
+                System.out.println("Nao ha foto ligado a postagem");
+                return false;
             }
             this.data_postagem = LocalDateTime.now();
             return true;
@@ -56,14 +75,16 @@ public class PostFoto implements Postavel {
 
         public boolean comenta() {
             Scanner sc = new Scanner(System.in);
+            System.out.println("Texto do comentario: ");
             String texto = sc.nextLine();
-            int tamanho = texto.length();
+            System.out.println("fixado? true/false: ");
             boolean fixado = sc.nextBoolean();
-            Comentario comentario = new Comentario(texto, tamanho, fixado);
+            Comentario comentario = new Comentario(texto, fixado);
             if(fixado) {
-                this.listaComentarios.add(comentario);
+                this.listaComentarios.add(qtde_fixados, comentario); //Nao sei se ta certo
                 this.qtde_fixados += 1;
-
+            }else {
+                this.listaComentarios.add(comentario);
             }
             return true;
         }

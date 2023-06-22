@@ -7,16 +7,14 @@ public class Video extends Recurso {
     public Video(int new_frame_rate, int new_duracao, String new_url_recurso){
         this.url_recurso = new_url_recurso;
         this.frame_rate = new_frame_rate;
+        this.duracao = new_duracao;
         try {                                                           //captura de exception de argumento invalido
             if (new_duracao < 0) throw new IllegalArgumentException();  //Argumento invalido
         }catch (IllegalArgumentException e){
             System.out.println("Duracao do video invalida");
         }
-        this.duracao = new_duracao;
-        if (validaUrlRecurso(new_url_recurso)) {
-            this.ID = prox_ID;
-            prox_ID++;
-        }
+        this.ID = prox_ID;
+        prox_ID++;
     }
 
     @Override
@@ -33,8 +31,8 @@ public class Video extends Recurso {
             throw new IllegalArgumentException();
         }catch (IllegalArgumentException e){
             System.out.println("Erro = " + e + ": Formato de arquivo invalido, insira ou .mp4, .mov, .wmv");
+            return false;
         }
-        return false;
     }
 
     public int getID() {

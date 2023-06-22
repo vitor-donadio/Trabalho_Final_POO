@@ -8,11 +8,11 @@ public class Comentario {
     private int tamanho;
     private String texto;
 
-    public Comentario(String new_texto, int new_tamanho, boolean new_fixado){ //Construtor
+    public Comentario(String new_texto, boolean new_fixado){ //Construtor
         this.data = LocalDateTime.now();
         this.fixado = new_fixado;
-        this.tamanho = new_tamanho;
         this.texto = new_texto;
+        this.tamanho = texto.length();
     }
 
     //Metodos set e get:
