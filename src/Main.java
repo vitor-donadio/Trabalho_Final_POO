@@ -1,13 +1,18 @@
 import sistema.estrutura.Foto;
+import sistema.estrutura.PostavelFactory;
 import sistema.estrutura.Video;
 import sistema.postagem.PostFoto;
 import sistema.postagem.PostVideo;
+import sistema.postagem.Postavel;
 
 public class Main {
     public static void main(String[] args){
         System.out.println("================= TENTATIVA 1 =================");
         Foto foto1 = new Foto("1500x1000","Foto_com_um_Pikachu_fofinho.png");
         PostFoto postFoto = new PostFoto(foto1, "Kanto");
+        //PostavelFactory postavelFactory = new PostavelFactory();
+        //Postavel postFoto = postavelFactory.getPostavel("POSTFOTO");
+
         if (postFoto.posta()) System.out.println("Postagem feita com sucesso");
         System.out.print("Lista de fotos: ");
         System.out.println(postFoto.getFotos());
@@ -49,5 +54,6 @@ public class Main {
         System.out.print("Duracao do filme: ");
         System.out.println(video1.getDuracao() + " min");
         System.out.println(" ");
+
     }
 }

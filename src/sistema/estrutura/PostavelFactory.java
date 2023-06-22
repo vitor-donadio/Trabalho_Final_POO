@@ -43,6 +43,7 @@ public class PostavelFactory {
                 PostFoto foto = new PostFoto(nova_foto, localizacao);
             } */
             PostFoto foto = new PostFoto();
+            System.out.println(foto);
             return foto;
         }
         throw new IllegalArgumentException("Argumentos Invalido.%nInsira POSTVIDEO ou POSTFOTO");

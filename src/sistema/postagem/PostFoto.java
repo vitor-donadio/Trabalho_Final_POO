@@ -21,7 +21,7 @@ public class PostFoto implements Postavel {
             fotos.add(new_foto); //Precisa do this?
             this.qtde_fotos++;
         }
-        public boolean adicicionaFoto(Foto new_foto){
+        public boolean adicicionaFoto(Foto new_foto){   //Parametro adicionado para que o metodo possa receber uma foto.
             if (qtde_fotos <= 10) {     //Caso haja espaço para fotos
                 fotos.add(new_foto);
                 this.qtde_fotos += 1;
@@ -40,7 +40,7 @@ public class PostFoto implements Postavel {
         }
         public boolean posta() {
             if (qtde_fotos < 1){
-                throw new NullPointerException("Não há foto ligado a postagem");
+                throw new NullPointerException("Nao ha foto ligado a postagem");
             }
             this.data_postagem = LocalDateTime.now();
             return true;
