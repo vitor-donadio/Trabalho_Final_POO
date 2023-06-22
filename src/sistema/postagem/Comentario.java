@@ -1,4 +1,4 @@
-package sistema.post;
+package sistema.postagem;
 
 import java.time.LocalDateTime;
 

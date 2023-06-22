@@ -1,5 +1,5 @@
-import sistema.postagem.Foto;
-import sistema.post.PostFoto;
+import sistema.estrutura.Foto;
+import sistema.postagem.PostFoto;
 
 public class Main {
     public static void main(String[] args){

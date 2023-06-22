@@ -1,4 +1,4 @@
-package sistema.postagem;
+package sistema.estrutura;
 
 public class Video extends Recurso {
     private int frame_rate;

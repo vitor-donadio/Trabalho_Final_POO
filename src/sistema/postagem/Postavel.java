@@ -1,4 +1,4 @@
-package sistema.post;
+package sistema.postagem;
 
 public interface Postavel {
     boolean posta();

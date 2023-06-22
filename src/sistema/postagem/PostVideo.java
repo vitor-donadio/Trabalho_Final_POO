@@ -1,6 +1,6 @@
-package sistema.post;
+package sistema.postagem;
 
-import sistema.postagem.Video;
+import sistema.estrutura.Video;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

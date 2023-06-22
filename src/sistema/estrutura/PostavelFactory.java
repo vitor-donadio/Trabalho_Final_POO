@@ -1,6 +1,6 @@
-package sistema.postagem;
+package sistema.estrutura;
 
-import sistema.post.*;
+import sistema.postagem.*;
 
 //Duvida em como a PostavelFactoryFunciona
 public class PostavelFactory {

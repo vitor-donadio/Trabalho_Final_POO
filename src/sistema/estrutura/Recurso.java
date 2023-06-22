@@ -1,4 +1,4 @@
-package sistema.postagem;
+package sistema.estrutura;
 
 abstract class Recurso {
     protected int ID;

@@ -1,4 +1,4 @@
-package sistema.postagem;
+package sistema.estrutura;
 
 public class Foto extends Recurso {
     private String resolucao;

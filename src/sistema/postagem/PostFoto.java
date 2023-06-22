@@ -1,6 +1,6 @@
-package sistema.post;
+package sistema.postagem;
 
-import sistema.postagem.Foto;
+import sistema.estrutura.Foto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
