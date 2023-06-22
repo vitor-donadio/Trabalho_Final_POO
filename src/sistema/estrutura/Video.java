@@ -33,6 +33,11 @@ public class Video extends Recurso {
     public int getFrame_rate() {
         return frame_rate;
     }
+
+    public int getDuracao() {
+        return duracao;
+    }
+
     public String getUrl_recurso() {
         return url_recurso;
     }

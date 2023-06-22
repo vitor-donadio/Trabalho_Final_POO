@@ -45,7 +45,9 @@ public class Main {
         System.out.print("URL do Video1: ");
         System.out.println(video1.getUrl_recurso());
         System.out.print("Frame rate do video: ");
-        System.out.println(video1.getFrame_rate());
+        System.out.println(video1.getFrame_rate() + " fps");
+        System.out.print("Duracao do filme: ");
+        System.out.println(video1.getDuracao() + " min");
         System.out.println(" ");
     }
 }
