@@ -4,7 +4,7 @@ import sistema.postagem.*;
 
 //Duvida em como a PostavelFactoryFunciona
 public class PostavelFactory {
-    private boolean atribuir;  /*1. Senti a nescessidade de uma forma de criar o Objeto Postavel, com parametros  atribuidos a ele
+     /*private boolean atribuir;  1. Senti a nescessidade de uma forma de criar o Objeto Postavel, com parametros  atribuidos a ele
                                dessa maneira criei um atributo e um constutor para facilitar a implementação.
                                O objeto postavel factory vem agora com o atributo atribuir para que quando o metodo getPostavel
                                for chamado possamos fazer a distinção entre o Postavel com atributos e o sem.*/
