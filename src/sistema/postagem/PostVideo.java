@@ -21,7 +21,8 @@ public class PostVideo implements Postavel{
             this.video = new_video;
             return true;
         } else {
-            return false; // Não ha nescessidade de exeção?
+            //return false; Não ha nescessidade de exeção?
+            throw new IndexOutOfBoundsException("Limite de um video por postagem");
         }
     }
     public boolean posta() {
