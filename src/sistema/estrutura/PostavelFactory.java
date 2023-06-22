@@ -9,9 +9,9 @@ public class PostavelFactory {
                                O objeto postavel factory vem agora com o atributo atribuir para que quando o metodo getPostavel
                                for chamado possamos fazer a distinção entre o Postavel com atributos e o sem.*/
 
-    public PostavelFactory(boolean new_atribuir){
-        this.atribuir = new_atribuir;
-    }
+    //public PostavelFactory(boolean new_atribuir){
+        //this.atribuir = new_atribuir;
+    //}
     //Duvida a classe Factory pode ter construtor?
 
     public Postavel getPostavel(String post_tipo){
