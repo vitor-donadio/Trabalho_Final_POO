@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class PostFoto implements Postavel {
         private int qtde_fotos = 0;
-        private List<Foto> fotos = new ArrayList<Foto>(10);
+        private List<Foto> fotos = new ArrayList<>(10);
         private String localizacao;
         private LocalDateTime data_postagem;
-        private List<Comentario> listaComentarios = new ArrayList<Comentario>();
+        private List<Comentario> listaComentarios = new ArrayList<>();
         private int qtde_fixados = 0;
         public PostFoto(){        // Construtor vazio sem foto
         }

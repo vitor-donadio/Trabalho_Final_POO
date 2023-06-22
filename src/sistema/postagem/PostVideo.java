@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class PostVideo implements Postavel{
     private Video video = null;
     private LocalDateTime data_postagem;
-    private List<Comentario> lista_comentarios = new ArrayList<Comentario>();
+    private List<Comentario> lista_comentarios = new ArrayList<>();
     private int qtde_fixados = 0;
     public PostVideo(){        // Construtor sem video
     }

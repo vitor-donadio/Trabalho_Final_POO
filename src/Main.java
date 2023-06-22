@@ -39,7 +39,7 @@ public class Main {
         System.out.print("Lista de comentarios: ");
         System.out.println(postVideo.getLista_comentarios());
         System.out.print("Quantidade de fixados: ");
-        System.out.println(postFoto.getQtde_fixados());
+        System.out.println(postVideo.getQtde_fixados());
         System.out.print("ID do Video1: ");
         System.out.println(video1.getID());
         System.out.print("URL do Video1: ");
