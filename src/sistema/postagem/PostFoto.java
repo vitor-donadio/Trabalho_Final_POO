@@ -28,19 +28,10 @@ public class PostFoto implements Postavel {
 
         public boolean adicicionaFoto(Foto new_foto){   //Parametro adicionado para que o metodo possa receber uma foto.
             if (new_foto.validaUrlRecurso(new_foto.getUrl_recurso())) {
-                try {
-                    if (qtde_fotos <= 10) {     //Caso haja espaço para fotos
-                        fotos.add(new_foto);
-                        this.qtde_fotos += 1;
-                        return true;
-                    } else {
-                        throw new ArrayIndexOutOfBoundsException(); //Exception para evitar a tentativa de indexar argumentos alem da capacidade da Array
-                    }
-                }catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Ultrapassou do limite de 10 fotos");
-                    return false;
-                }
-            }else {
+                fotos.add(new_foto);
+                this.qtde_fotos += 1;
+                return true;
+            } else {
                 return false;
             }
         }
@@ -52,10 +43,10 @@ public class PostFoto implements Postavel {
                     this.qtde_fotos -= 1;
                     return true;
                 } else {
-                    throw new ArrayIndexOutOfBoundsException(); //Não sei se e a Exception correta
+                    throw new IllegalArgumentException(); //Não sei se e a Exception correta
                 }
-            }catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("Foto não existe dentro da postagem");
+            }catch (IllegalArgumentException e){
+                System.out.println("Error = " + e + ": Foto não existe dentro da postagem");
                 return false;
             }
         }
@@ -63,10 +54,18 @@ public class PostFoto implements Postavel {
         public boolean posta() {
             try {
                 if (qtde_fotos < 1) {
-                    throw new ArithmeticException();
+                    throw new NullPointerException(); //Porque se a Array possui 0 elementos o valor dela passa a ser nulo
                 }
-            }catch (ArithmeticException e){
-                System.out.println("Nao ha foto ligado a postagem");
+            }catch (NullPointerException e){
+                System.out.println("Error = " + e + ": Nao ha foto ligado a postagem");
+                return false;
+            }
+            try {
+                if (qtde_fotos > 10){
+                    throw new ArrayIndexOutOfBoundsException();
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Erro = " + e + ": Ultrapassou o limite maximo de 10 fotos");
                 return false;
             }
             this.data_postagem = LocalDateTime.now();
@@ -112,6 +111,10 @@ public class PostFoto implements Postavel {
 
     public String getLocalizacao() {
         return localizacao;
+    }
+
+    public Comentario getComentario(int posicao){
+        return listaComentarios.get(posicao);
     }
 
     public void setLocalizacao(String localizacao) {

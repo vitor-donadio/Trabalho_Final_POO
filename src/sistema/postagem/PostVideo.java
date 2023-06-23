@@ -31,7 +31,7 @@ public class PostVideo implements Postavel{
                     throw new IndexOutOfBoundsException(); //Não sei se esta correto
                 }
             }catch (IndexOutOfBoundsException e){
-                System.out.println("Limite de um video por postagem");
+                System.out.println("Error = " + e + ": Limite de um video por postagem");
                 return false;
             }
         }else {
@@ -45,7 +45,7 @@ public class PostVideo implements Postavel{
                 throw new NullPointerException(); // Exeção quando o valor do video for null
             }
         }catch (NullPointerException e){
-            System.out.println("Nao ha video ligado a postagem");
+            System.out.println("Error = " + e + ": Nao ha video ligado a postagem");
             return false;
         }
         this.data_postagem = LocalDateTime.now();
@@ -82,6 +82,10 @@ public class PostVideo implements Postavel{
 
     public List<Comentario> getLista_comentarios() {
         return lista_comentarios;
+    }
+
+    public Comentario getComentario(int posicao){
+        return lista_comentarios.get(posicao);
     }
     /* Não usamos metodos sets, pois ja existem formas de dar valor a esses argumentos
         que nos permitem evitar erros no programa */

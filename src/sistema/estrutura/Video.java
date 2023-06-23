@@ -11,7 +11,7 @@ public class Video extends Recurso {
         try {                                                           //captura de exception de argumento invalido
             if (new_duracao < 0) throw new IllegalArgumentException();  //Argumento invalido
         }catch (IllegalArgumentException e){
-            System.out.println("Duracao do video invalida");
+            System.out.println("Erro = " + e + ": Duracao do video invalida");
         }
         this.ID = prox_ID;
         prox_ID++;

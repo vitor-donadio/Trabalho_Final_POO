@@ -16,13 +16,13 @@ public class Foto extends Recurso {
             } else if (url.length() < 4) {
                 throw new IllegalArgumentException("Formato de arquivo invalido, insira ou .jpg, .png, .bpm");
             }
-            if (url.equals(".jpg") || url.equals(".png") || url.equals(".bmp")) {
+            if (url.equals(".jpg") || url.equals(".png") || url.equals(".bpm")) {
                 return true;
             }else {
                 throw new IllegalArgumentException();
             }
         }catch (IllegalArgumentException e) {
-            System.out.println("Erro = " + e + ": Formato de arquivo invalido, insira ou .mp4, .mov, .wmv");
+            System.out.println("Erro = " + e + ": Formato de arquivo invalido, insira ou .jpg, .png, .bpm");
             return false;
         }
     }
