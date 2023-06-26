@@ -14,6 +14,9 @@ public class Main {
         tentativa5();
         tentativa6();
         tentativa7();
+        tentativa8();
+        tentativa9();
+        tentativa10();
     }
 
     static void tentativa1(){
@@ -33,7 +36,7 @@ public class Main {
             System.out.println(postFoto.getLocalizacao());
             System.out.print("Data da postagem: ");
             System.out.println(postFoto.getData_postagem());
-            getAtributosFoto(foto1);
+            getAtributosFoto(postFoto.getFoto(0));
             System.out.print("Lista de comentarios: ");
             System.out.println(postFoto.getListaComentarios());
             System.out.print("Quantidade de fixados: ");
@@ -41,6 +44,7 @@ public class Main {
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
 
@@ -56,13 +60,13 @@ public class Main {
             System.out.print("Data da postagem: ");
             System.out.println(postVideo.getData_postagem());
             System.out.print("ID do Video1: ");
-            System.out.println(video1.getID());
+            System.out.println(postVideo.getVideo().getID());
             System.out.print("URL do Video1: ");
-            System.out.println(video1.getUrl_recurso());
+            System.out.println(postVideo.getVideo().getUrl_recurso());
             System.out.print("Frame rate do video: ");
-            System.out.println(video1.getFrame_rate() + " fps");
+            System.out.println(postVideo.getVideo().getFrame_rate() + " fps");
             System.out.print("Duracao do video: ");
-            System.out.println(video1.getDuracao() + " min");
+            System.out.println(postVideo.getVideo().getDuracao() + " min");
             System.out.print("Lista de comentarios: ");
             System.out.println(postVideo.getLista_comentarios());
             System.out.print("Quantidade de fixados: ");
@@ -70,6 +74,7 @@ public class Main {
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
 
@@ -82,6 +87,14 @@ public class Main {
             System.out.println(postVideo.getVideo());
             System.out.print("Data da postagem: ");
             System.out.println(postVideo.getData_postagem());
+            System.out.print("ID do Video1: ");
+            System.out.println(postVideo.getVideo().getID());
+            System.out.print("URL do Video1: ");
+            System.out.println(postVideo.getVideo().getUrl_recurso());
+            System.out.print("Frame rate do video: ");
+            System.out.println(postVideo.getVideo().getFrame_rate() + " fps");
+            System.out.print("Duracao do video: ");
+            System.out.println(postVideo.getVideo().getDuracao() + " min");
             System.out.print("Lista de comentarios: ");
             System.out.println(postVideo.getLista_comentarios());
             System.out.print("Quantidade de fixados: ");
@@ -89,6 +102,7 @@ public class Main {
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
 
@@ -112,6 +126,7 @@ public class Main {
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
 
@@ -140,11 +155,9 @@ public class Main {
             System.out.println(postFoto.getLocalizacao());
             System.out.print("Data da postagem: ");
             System.out.println(postFoto.getData_postagem());
-            getAtributosFoto(foto1);
-            getAtributosFoto(foto2);
-            getAtributosFoto(foto3);
-            getAtributosFoto(foto4);
-            getAtributosFoto(foto5);
+            for (int i = 0; i < postFoto.getFotos().size(); i++) {
+                getAtributosFoto(postFoto.getFoto(i));
+            }
             System.out.print("Lista de comentarios: ");
             System.out.println(postFoto.getListaComentarios());
             System.out.print("Quantidade de fixados: ");
@@ -152,6 +165,7 @@ public class Main {
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
 
@@ -168,8 +182,8 @@ public class Main {
         Foto foto8 = new Foto("1600x1600","Musicas_Para_Churrasco_(Vol.I).png");
         Foto foto9 = new Foto("1600x1600","Tardezinha_Ao_Vivo.jpg");
         Foto foto10 = new Foto("1600x1600","Perfect_World.png");
-        Foto foto11 = new Foto("1600x1600","HEROES_&_VILLAINS.png");
-        postFoto.setLocalizacao("Spotify");
+        Foto foto11 = new Foto("1600x1600","Madvillainy.png");
+        postFoto.setLocalizacao("Meu Spotify");
         postFoto.adicicionaFoto(foto1);
         postFoto.adicicionaFoto(foto2);
         postFoto.adicicionaFoto(foto3);
@@ -192,17 +206,9 @@ public class Main {
             System.out.println(postFoto.getLocalizacao());
             System.out.print("Data da postagem: ");
             System.out.println(postFoto.getData_postagem());
-            getAtributosFoto(foto1);
-            getAtributosFoto(foto2);
-            getAtributosFoto(foto3);
-            getAtributosFoto(foto4);
-            getAtributosFoto(foto5);
-            getAtributosFoto(foto6);
-            getAtributosFoto(foto7);
-            getAtributosFoto(foto8);
-            getAtributosFoto(foto9);
-            getAtributosFoto(foto10);
-            getAtributosFoto(foto11);
+            for (int i = 0; i < postFoto.getFotos().size(); i++) {
+                getAtributosFoto(postFoto.getFoto(i));
+            }
             System.out.print("Lista de comentarios: ");
             System.out.println(postFoto.getListaComentarios());
             System.out.print("Quantidade de fixados: ");
@@ -210,45 +216,149 @@ public class Main {
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
 
     static void tentativa7(){
-        System.out.println("================= TENTATIVA 8 =================");
+        System.out.println("================= TENTATIVA 7 =================");
         Foto foto1 = new Foto("1920x1080","Homem_malhado.png");
         PostFoto postFoto = (PostFoto) PostavelFactory.getPostavel("POSTFOTO");
         postFoto.adicicionaFoto(foto1);
         postFoto.setLocalizacao("Academia");
         if (postFoto.posta()){
-            postFoto.comenta();
-            Comentario comentario = postFoto.getComentario(0);
+            if(postFoto.comenta()) {
+                System.out.println("Postagem feita com sucesso");
+                System.out.print("Lista de fotos: ");
+                System.out.println(postFoto.getFotos());
+                System.out.print("Quantidade de fotos: ");
+                System.out.println(postFoto.getQtde_fotos());
+                System.out.print("Localizacao: ");
+                System.out.println(postFoto.getLocalizacao());
+                System.out.print("Data da postagem: ");
+                System.out.println(postFoto.getData_postagem());
+                getAtributosFoto(postFoto.getFoto(0));
+                System.out.print("Lista de comentarios: ");
+                System.out.println(postFoto.getListaComentarios());
+                System.out.print("Quantidade de fixados: ");
+                System.out.println(postFoto.getQtde_fixados());
+                System.out.print("Data do comentario: ");
+                System.out.println(postFoto.getComentario(0).getData());
+                System.out.print("Comentario fixado: ");
+                System.out.println(postFoto.getComentario(0).getFixado());
+                System.out.print("Texto do comentario: ");
+                System.out.println(postFoto.getComentario(0).getTexto());
+                System.out.print("Tamanho do texto: ");
+                System.out.println(postFoto.getComentario(0).getTamanho() + " caracteres");
+                System.out.println(" ");
+            }else {
+                System.out.println("Falha ao fazer comentario");
+                System.out.println(" ");
+            }
+        }else {
+            System.out.println("Falha ao postar");
+            System.out.println(" ");
+        }
+    }
+
+    static void tentativa8(){
+        System.out.println("================= TENTATIVA 8 =================");
+        Video video1 = new Video(30,25, "One_Piece_EP_1000.mp4");
+        PostVideo postVideo = (PostVideo) PostavelFactory.getPostavel("POSTVIDEO");
+        postVideo.adicicionaVideo(video1);
+        if (postVideo.posta()){
+            if(postVideo.comenta()) {
+                System.out.println("Postagem feita com sucesso");
+                System.out.print("Video: ");
+                System.out.println(postVideo.getVideo());
+                System.out.print("Data da postagem: ");
+                System.out.println(postVideo.getData_postagem());
+                System.out.print("ID do Video1: ");
+                System.out.println(postVideo.getVideo().getID());
+                System.out.print("URL do Video1: ");
+                System.out.println(postVideo.getVideo().getUrl_recurso());
+                System.out.print("Frame rate do video: ");
+                System.out.println(postVideo.getVideo().getFrame_rate() + " fps");
+                System.out.print("Duracao do video: ");
+                System.out.println(postVideo.getVideo().getDuracao() + " min");
+                System.out.print("Lista de comentarios: ");
+                System.out.println(postVideo.getLista_comentarios());
+                System.out.print("Quantidade de fixados: ");
+                System.out.println(postVideo.getQtde_fixados());
+                System.out.print("Data do comentario: ");
+                System.out.println(postVideo.getComentario(0).getData());
+                System.out.print("Comentario fixado: ");
+                System.out.println(postVideo.getComentario(0).getFixado());
+                System.out.print("Texto do comentario: ");
+                System.out.println(postVideo.getComentario(0).getTexto());
+                System.out.print("Tamanho do texto: ");
+                System.out.println(postVideo.getComentario(0).getTamanho() + " caracteres");
+                System.out.println(" ");
+            }else {
+                System.out.println("Falha ao fazer comentario");
+                System.out.println(" ");
+            }
+        }else {
+            System.out.println("Falha ao postar");
+            System.out.println(" ");
+        }
+    }
+    static void tentativa9(){
+        System.out.println("================= TENTATIVA 9 =================");
+        Video video1 = new Video(60,160, "GlItCH.mKv");
+        PostVideo postVideo =  (PostVideo) PostavelFactory.getPostavel("POSTVIDEO");
+        postVideo.adicicionaVideo(video1);
+        if(postVideo.posta()){
             System.out.println("Postagem feita com sucesso");
-            System.out.print("Lista de fotos: ");
-            System.out.println(postFoto.getFotos());
-            System.out.print("Quantidade de fotos: ");
-            System.out.println(postFoto.getQtde_fotos());
-            System.out.print("Localizacao: ");
-            System.out.println(postFoto.getLocalizacao());
+            System.out.print("Video: ");
+            System.out.println(postVideo.getVideo());
             System.out.print("Data da postagem: ");
-            System.out.println(postFoto.getData_postagem());
-            getAtributosFoto(foto1);
+            System.out.println(postVideo.getData_postagem());
+            System.out.print("ID do Video1: ");
+            System.out.println(postVideo.getVideo().getID());
+            System.out.print("URL do Video1: ");
+            System.out.println(postVideo.getVideo().getUrl_recurso());
+            System.out.print("Frame rate do video: ");
+            System.out.println(postVideo.getVideo().getFrame_rate() + " fps");
+            System.out.print("Duracao do video: ");
+            System.out.println(postVideo.getVideo().getDuracao() + " min");
             System.out.print("Lista de comentarios: ");
-            System.out.println(postFoto.getListaComentarios());
+            System.out.println(postVideo.getLista_comentarios());
             System.out.print("Quantidade de fixados: ");
-            System.out.println(postFoto.getQtde_fixados());
-            System.out.print("Data do comentario: ");
-            System.out.println(comentario.getData());
-            System.out.print("Comentario fixado: ");
-            System.out.println(comentario.getFixado());
-            System.out.print("Texto do comentario: ");
-            System.out.println(comentario.getTexto());
-            System.out.print("Tamanho do texto: ");
-            System.out.println(comentario.getTamanho());
+            System.out.println(postVideo.getQtde_fixados());
             System.out.println(" ");
         }else {
             System.out.println("Falha ao postar");
+            System.out.println(" ");
         }
     }
+    static void tentativa10(){
+    System.out.println("================ TENTATIVA 10 =================");
+    Foto foto1 = new Foto("854x480","Ao_infinito_e_além.gif");
+    PostFoto postFoto = (PostFoto) PostavelFactory.getPostavel("POSTFOTO");
+        postFoto.adicicionaFoto(foto1);
+        postFoto.setLocalizacao("Quarto do Andy");
+        if (postFoto.posta()){
+        System.out.println("Postagem feita com sucesso");
+        System.out.print("Lista de fotos: ");
+        System.out.println(postFoto.getFotos());
+        System.out.print("Quantidade de fotos: ");
+        System.out.println(postFoto.getQtde_fotos());
+        System.out.print("Localizacao: ");
+        System.out.println(postFoto.getLocalizacao());
+        System.out.print("Data da postagem: ");
+        System.out.println(postFoto.getData_postagem());
+        getAtributosFoto(postFoto.getFoto(0));
+        System.out.print("Lista de comentarios: ");
+        System.out.println(postFoto.getListaComentarios());
+        System.out.print("Quantidade de fixados: ");
+        System.out.println(postFoto.getQtde_fixados());
+        System.out.println(" ");
+    }else {
+        System.out.println("Falha ao postar");
+        System.out.println(" ");
+    }
+}
     static void getAtributosFoto(Foto foto){
         System.out.print("ID da Foto: ");
         System.out.println(foto.getID());

@@ -15,7 +15,7 @@ public class PostavelFactory {
             }
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
-        System.out.println("Argumentos Invalido.%nInsira POSTVIDEO ou POSTFOTO");
+        System.out.println("Erro = " + e + ": Insira POSTVIDEO ou POSTFOTO");
         return null;
         }
     }

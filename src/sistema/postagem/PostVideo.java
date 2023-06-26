@@ -3,6 +3,7 @@ package sistema.postagem;
 import sistema.estrutura.Video;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,16 +55,21 @@ public class PostVideo implements Postavel{
 
     public boolean comenta() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Texto do comentario: ");
-        String texto = sc.nextLine();
-        System.out.println("fixado? true/false: ");// Talvez seja necessario colocar uma exception
-        boolean fixado = sc.nextBoolean();
-        Comentario comentario = new Comentario(texto, fixado);
-        if(fixado) {
-            this.lista_comentarios.add(qtde_fixados, comentario); //Nao sei se ta certo
-            this.qtde_fixados += 1;
-        }else {
-            this.lista_comentarios.add(comentario);
+        try {
+            System.out.println("Texto do comentario: ");
+            String texto = sc.nextLine();
+            System.out.println("fixado? true/false: ");
+            boolean fixado = sc.nextBoolean();
+            Comentario comentario = new Comentario(texto, fixado);
+            if(fixado) {
+                this.lista_comentarios.add(qtde_fixados, comentario);
+                this.qtde_fixados += 1;
+            }else {
+                this.lista_comentarios.add(comentario);
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Erro = " + e + ": Insira apenas true/false");
+            return false;
         }
         return true;
     }

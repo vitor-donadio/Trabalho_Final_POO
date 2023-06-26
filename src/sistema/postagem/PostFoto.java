@@ -4,6 +4,7 @@ import sistema.estrutura.Foto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -72,8 +73,9 @@ public class PostFoto implements Postavel {
             return true;
         }
 
-        public boolean comenta() {
-            Scanner sc = new Scanner(System.in);
+    public boolean comenta() {
+        Scanner sc = new Scanner(System.in);
+        try {
             System.out.println("Texto do comentario: ");
             String texto = sc.nextLine();
             System.out.println("fixado? true/false: ");
@@ -85,8 +87,12 @@ public class PostFoto implements Postavel {
             }else {
                 this.listaComentarios.add(comentario);
             }
-            return true;
+        }catch (InputMismatchException e){
+            System.out.println("Erro = " + e + ": Insira apenas true/false");
+            return false;
         }
+        return true;
+    }
 
     //Metodos set e get:
     public int getQtde_fotos() {
@@ -116,6 +122,7 @@ public class PostFoto implements Postavel {
     public Comentario getComentario(int posicao){
         return listaComentarios.get(posicao);
     }
+    public Foto getFoto(int posicao){ return fotos.get(posicao); }
 
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
