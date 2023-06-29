@@ -7,9 +7,9 @@ public class Video extends Recurso {
     public Video(int new_frame_rate, int new_duracao, String new_url_recurso){
         this.url_recurso = new_url_recurso;
         this.frame_rate = new_frame_rate;
-        this.duracao = new_duracao;
         try {                                                           //captura de exception de argumento invalido
             if (new_duracao < 0) throw new IllegalArgumentException();  //Argumento invalido
+            this.duracao = new_duracao;
         }catch (IllegalArgumentException e){
             System.out.println("Erro = " + e + ": Duracao do video invalida");
         }

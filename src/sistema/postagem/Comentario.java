@@ -30,15 +30,10 @@ public class Comentario {
 
     public String getTexto() { return texto; }
 
-    //A edição do comentario é permitida porem a data é atualizada para o momento da edição, com exeção do fixado
-
-    public void setTamanho(int tamanho) {
-        this.tamanho = tamanho;
+    //A edição do texto é permitida porem a data e o tamanho são atualizados no momento da edição
+    public void setTexto(String text) {
+        this.texto = text;
         this.data = LocalDateTime.now();
-    }
-
-    public void setTexto(String texto) {
-        this.texto = texto;
-        this.data = LocalDateTime.now();
+        this.tamanho = text.length();
     }
 }

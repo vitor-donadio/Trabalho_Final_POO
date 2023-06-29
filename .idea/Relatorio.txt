@@ -1,0 +1,517 @@
+Nome: Vitor Butler Donadio
+DRE: 120162271
+
+Relatorio Trabalho Pratico POO:
+
+========== Organização ==========
+
+Inicialmente para melhor organização foram criados o pacote sistema e como parte dele estrutura e postagem.
+Dessa maneira, foi dividido entre postagem e estrutura da seguinte forma:
+
+postagem: as classes e interfaces que constituiriam o funcionamento da postagem;
+
+estrutura: classes que seriam usadas como fundação para as classes do pacote postagem.
+
+========== Estrutura ==========
+
+As classes do pacote estrutra são: Recurso, Foto, Video, PostavelFactory.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe Recurso: É uma classe abstrata que possui três atributos protecteds e um metodo abstrato validarUrlRecurso,
+que tem uma string como parametro. O atributo prox_ID é estatico e começa em um, ja ID é um atributo inteiro recebe prox_ID.
+A classe também possui o atributo String url_recurso.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe Foto: A classe Foto extende a classe abstrata Recurso, por meio da herança a classe Foto recebe os atributos da classe
+Recurso. Além disso, tambem se faz necessario implementar um override do metodo abstrato da classe Recurso. A classe também
+possui o atributo resolucao.
+A classe possui os seguintes metodos:
+
+Foto: Método construtor da classe Foto, o metodo recebe os parâmetros new_resolucao e new_url_recurso. O atributo resolucao
+recebe new_resolucao e os atributo herdados url_recurso e ID recebem new_url_recurso e prox_ID rescpetivamente. prox_ID
+soma mais um a ele mesmo.
+
+validarUrlRecurso: Override do metodo abstrato da classe Recurso, o objetivo desse metodo é checar se a Url esta no formato
+correto. No caso da classe Foto se busca uma Url do formato .png, .jpg ou .bpm. Assim, primeiramente é usado uma estrutura
+de condição para checar se o tamanho da String é maior que quatro, se for, o novo valor da Url passa a ser os ultimos 4 digitos,
+e se o tamanho for menor que quatro é lançado uma Exception de argumento invalido. Com a nova Url, novamente se usa uma
+estrutura de condição para saber se a Url é igual aos formatos valido, se for igual o metodo retorna true, se for diferente
+é lançada novamente uma Exception. Por fim e feito uma captura de Exception que vai do inicio da primeira estrutura de condição
+até fim da segunda. Essa captura busca por Exceptions do tipo IllegalArgumentException, que foram lançadas forçadamente toda
+vez que houve uma falha nas condições. Se alguma exeção por capturada o erro é escrito e o metodo retorna false.
+
+Metodos get e set da classe Foto:
+
+getID: Retorna o valor do atributo ID.
+
+getResolucao: Retorna o valor do atributo resolucao.
+
+getUrl_recurso: Retorna o valor do atributo url_recurso.
+
+Métodos set não são necessarios visto que os valores de todos os atributos ja são passados de forma segura através do construtor.
+O atributo prox_ID não ganha um metodo get pois é um atributo estatico que serve para dar valor ao ID.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe Video: A classe Video extende a classe abstrata Recurso, por meio da herança a classe Video recebe os atributos da classe
+Recurso. Além disso, tambem se faz necessario implementar um override do metodo abstrato da classe Recurso. A classe também
+possui os atributos frame_rate e duracao.
+A classe possui os seguintes metodos:
+
+Video: Método construtor da classe Video, o metodo recebe os parâmetros new_frame_rate, new_duracao e new_url_recurso. Os atributos
+frame_rate e duracao recebem new_frame_rate e new_duracao respectivamente e os atributo herdados url_recurso e ID recebem new_url_recurso
+e prox_ID rescpetivamente. prox_ID soma mais um a ele mesmo. Para evitar que a duração seja menor que zero, oque não faria sentido
+foi feito uma estrutura de condição para que quando new_condicao for menor que zero seja lançado uma Exception, entao é feita
+uma tentativa de captura nessa exeção, imprimindo o erro e duracao não recebera o novo valor.
+
+validarUrlRecurso: Override do metodo abstrato da classe Recurso, o objetivo desse metodo é checar se a Url esta no formato
+correto. No caso da classe Video se busca uma Url do formato .wmv, .mov ou .mp4. Assim, primeiramente é usado uma estrutura
+de condição para checar se o tamanho da String é maior que quatro, se for, o novo valor da Url passa a ser os ultimos 4 digitos,
+e se o tamanho for menor que quatro é lançado uma Exception de argumento invalido. Com a nova Url, novamente se usa uma
+estrutura de condição para saber se a Url é igual aos formatos valido, se for igual o metodo retorna true, se for diferente
+é lançada novamente uma Exception. Por fim e feito uma captura de Exception que vai do inicio da primeira estrutura de condição
+até fim da segunda. Essa captura busca por Exceptions do tipo IllegalArgumentException, que foram lançadas forçadamente toda
+vez que houve uma falha nas condições. Se alguma exeção por capturada o erro é escrito e o metodo retorna false.
+
+getID: Retorna o valor do atributo ID.
+
+getFrame_rate: Retorna o valor do atributo frame_rate.
+
+getDuracao: Retorna o valor do atributo duracao.
+
+getUrl_recurso: Retorna o valor do atributo url_recurso.
+
+Assim como na classe foto Métodos set não são necessarios visto que os valores de todos os atributos ja são passados de forma
+segura através do construtor. O atributo prox_ID não ganha um metodo get pois é um atributo estatico que serve para dar valor ao ID.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe PostavelFactory: A classe PostavelFactory é composta por apenas um metodo, chamado getPostavel. O proposito dessa classe
+é criar objetos de mais de uma classe.
+O metodo da classe é:
+
+getPostavel: É um metodo estatico que retorna um objeto da classe Postavel, seu objetivo é criar objetos de diferentes classes
+dependendo de uma condição. O metodo funciona da seguinte maneira: inicialmente ele recebe como parametro uma String, após isso
+ele entrará em uma estrutura de condição. Se a String for igual a POSTVIDEO, ele cria um objeto do tipo PostVideo, se for,
+POSTFOTO, é criado um objeto do tipo PostFoto. Se a String não for igual a nenhum dos dois, é lançado uma Exception de
+argumento invalido. Por isso, para manter o funcionamento do programa, esxiste uma tentativa de captura por exeções do
+tipo IllegalArgumentException que quando capturadas imprimem o erro na tela e retornam null.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+========== Postagem ==========
+
+As classes do pacote postagem são: Postavel, PostFoto, PostVideo, Comentario
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Interface Postavel: Interface que possui dois metodos do tipo boolean, comenta e posta. Por ser uma interface seus metodos
+não possuem estrutura.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe PostFoto: A classe PostFoto implementa Postavel, assim ela precisa implementar os metodos posta e comenta. Além
+desses dois metodos ela possui mais doze, contando com os get and set, e conta com um total de seis atributos. Eles são:
+qtde_fotos, fotos, localizacao, data_postagem, listaComentarios, qtde_fixados.
+A classe possui os seguintes metodos:
+
+PostFoto: Construtor vazio, ele não recebe parametros e não tem uma estrutura definida, ele também é o construtor chamado
+no metodo getPostavel da classe PostavelFactory.
+
+PostFoto: Override do construtor, dessa vez recebendo parametros, seria usado caso fosse necessario passar os valores dos
+atributos diretamente no construtor. Porém, esse contrutor se tornou obsoleto no codigo pois o PostavelFacotry é sempre usado
+na criação de novos objetos PostFoto e tal metodo chama o construtor vazio. Foi optado por se manter esse contrutor dentro
+do codigo pois ele não causa erros no codigo e mostra que ele foi pensado em algum momento. A corpo do metodo é uma
+estrutura de condição, que chama o metodo de validação de Url, se retornar verdadeiro, o objeto é criado, com os novo parametros
+para localização, a foto é adicionada na lista de fotos e a qtde_foto soma mais um a ela mesma,mas se falhar, o objeto é
+criado mas sem passar os paremetros.
+
+adicionaFoto: O objetivo desse método é pegar um objeto da classe Foto e adicionar a lista de fotos. Dessa maneira, tem-se
+que isto será feito da seguinte forma, primeiro o metodo recebe uma foto como parametro, em seguida ele chama o metodo de validação
+da Url dentro de um estrutura de condição, se a Url for valida a foto será adicionada a lista de fotos, é somado mais um a
+qtde_fotos e retorna verdadeiro. Caso a Url seja invalida, apenas retorna falso. Nesse método o parametro new_foto foi
+adicionado, para que o método possa ser chamado carregando o objeto que será adicionado a lista fotos.
+
+removeFoto: O objetivo desse método e remover um objeto da classe Foto da lista de fotos. Assim, inicialmente é verificado
+em uma estrutura de condição se a lista contem o objeto Foto passado como parametro, se possuir, ele é removido da lista
+de fotos, se subtrai um da qtde_fotos e retorna verdadeiro, se não conter, é lançado uma Exception do tipo argumento invalido,
+para avisar que não existe tal objeto dentro da lista. Nesse processo e feita uma tentativa de captura de IllegalArgumentException
+se alguma exeção do tipo for encontrada, o erro é impresso e retorna false. Nesse método o parametro new_foto foi adicionado,
+para que o método possa ser chamado carregando o objeto que será removido a lista fotos.
+
+posta: Método implementado da Interface Postavel, ele verifica se existe alguma foto atribuida a lista ou se a quantidade
+ultrapassa o limite de dez, se estiver tudo correto valor de data_postagem e atualizado, o método funciona da seguinte forma:
+dentro de uma estrutura de condição é verificado se qtde_fotos é igual a zero, se for verdade, isto quer dizer que a lista
+esta vazia possuindo o valor null, por essa razão é lançado uma Exception do tipo NullPointerException. É feita uma tentativa
+de captura nessa estrutrua de condição e se uma exceção NullPointerException for capturada, o erro é impresso e retorna false.
+Em seguida é feita mais uma estrutrua de condição, agora para checar se qtde_fotos é maior que 10, se for verdedadeiro, uma
+exceção do tipo ArrayIndexOutOfBoundsException é lançada, que significa que a Array está ultrapassou seus limites. É feita
+uma tentativa de captura para ArrayIndexOutOfBoundsException, e se capturada é impresso o erro e o metodo retorna falso.
+Após passar por todas as verificações sem erro, a data da postagem é atualizada para a data atual e retorna verdadeiro.
+
+comenta: Método implementado da Interface Postavel, ele tem como objetivo fazer uma tentativa de comentario na postagem.
+Ele inicialmente cria um scanner, esse tem o objetivo de ler tanto o texto que será comentado quanto se ele é fixado, a ideia
+do scanner veio para permitir que houvesse mais liberdade na hora de comentar em uma postagem, para garantir o funcionamento
+do programa foi implementado uma tentativa de captura de exceções do tipo InputMismatchException, que acontece quando é
+inserido um valor diferente de true or false para o fixado, se a exceção for capturada o erro é impresso e retorna false.
+Se não for encontrado erro com o scanner, é criado um objeto Comentario que recebe os parametros dados pelo usuario. Dentro
+de uma estrutura de condição, se verifica se o comentario é fixado, se for ele é adicionado a lista de comentarios na posição
+da qtde_fixados, isso fara com que os comentarios fixados mais antigos estejam sempre a frente. Se o comentario não for fixado
+então ele será adicionado a lista de comentario na ultima posição disponivel. Por fim o metodo retorna verdadeiro.
+
+getQtde_fotos: Retorna o valor de qtde_fotos.
+
+getQtde_fixados: Retorna o valor de qtde_fixados.
+
+getFotos: Retorna a listagem de objetos Fotos dentro da lista fotos.
+
+getListaComentarios: Retorna a listagem de objetos Comentarios dentro da listaComentarios.
+
+getData_postagem: Retorna o valor de data_postagem.
+
+getLocalizacao: Retorna o valor de localizacao
+
+getComentario: Recebe uma posição como parametro e retorna o valor do objeto dentro da listaComentarios na posição dada.
+
+setLocalizacao: Este metodo foi criado pois não havia nenhuma outra forma de dar valor a localizacao na classe. O método
+recebe um parametro e passa esse valor para o atributo localizacao.
+
+Não foram criados os metodos set para qtde_fotos, qtde_fixados, fotos, listaComentarios e data_postagem, pois ja existem metodos
+para dar valor a esses argumentos e o metodo set burlaria as medidas de seguraça do programa
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe PostVideo: A classe PostVideo implementa Postavel, assim ela precisa implementar os metodos posta e comenta. Além
+desses dois metodos ela possui mais oito, contando com os metodos get e set, e conta com um total de quatro atributos. Eles
+são: video, data_postagem, lista_comentarios, qtde_fixados.
+A classe possui os seguintes metodos:
+
+PostVideo: Construtor vazio, ele não recebe parametros e não tem uma estrutura definida, ele também é o construtor chamado
+no metodo getPostavel da classe PostavelFactory.
+
+PostVideo: Override do construtor, dessa vez recebendo parametros, seria usado caso fosse necessario passar os valores dos
+atributos diretamente no construtor. Da mesma maneira que ocorreu no contrutor do PostFoto, esse contrutor se tornou obsoleto
+no codigo pois o PostavelFacotry é sempre usado na criação de novos objetos PostVideo e tal metodo chama o construtor vazio.
+Foi optado por se manter esse contrutor dentro do codigo pois ele não causa erros no codigo e mostra que ele foi pensado em
+algum momento. A corpo do metodo é uma estrutura de condição, que chama o metodo de validação de Url, se retornar verdadeiro,
+o objeto é criado, com video recebendo um objeto da classe Video.
+
+adicionaVideo: O objetivo desse método é pegar um objeto da classe Video e atribui-lo a postagem. Dessa maneira, primeiro
+o metodo recebe um Video como parametro, em seguida ele chama o metodo de validação da Url dentro de um estrutura de condição,
+se a Url for invalida, ele retorna falso, se for valida, o método entra em mais uma estrutura de condição para garantir que
+já não há videos vinculados a postagem, então se video for null ele ira receber o novo objeto Video e retornar verdadeiro,
+se não, será lançado uma Exception do tipo IndexOutOfBoundsException, foi escolhida essa exceção com o intuito de informar
+ao usuario que foi ultrapassado o limite de um video por postagem. Na segunda condição é feita uma tentativa de captura de
+exceção e se capturada o erro é impresso e retorna falso. Nesse método o parametro new_video foi adicionado, para que o
+método possa ser chamado carregando o novo valor que será atribuido a video.
+
+posta: Método implementado da Interface Postavel, ele verifica se existe alguma video atribuido a lista, se estiver tudo
+correto valor de data_postagem e atualizado, o método funciona da seguinte forma: dentro de uma estrutura de condição é
+verificado se video é igual a null, se for verdade, Isso significa que video tem o valor de null, dessa maneira é lançado
+uma Exception do tipo NullPointerException. É feita uma tentativa de captura nessa estrutrua de condição e se uma exceção
+NullPointerException for capturada, o erro é impresso e retorna false. Após passar pela verificaçaõ sem erro, a data da
+postagem é atualizada para a data atual e retorna verdadeiro.
+
+comenta: Método implementado da Interface Postavel, ele tem como objetivo fazer uma tentativa de comentario na postagem.
+O método funciona de forma igual ao método comenta da classe PostFoto.Ele inicialmente cria um scanner, esse tem o objetivo
+de ler tanto o texto que será comentado quanto se ele é fixado, a ideia do scanner veio para permitir que houvesse mais
+liberdade na hora de comentar em uma postagem, para garantir o funcionamento do programa foi implementado uma tentativa
+de captura de exceções do tipo InputMismatchException, que acontece quando é inserido um valor diferente de true or false
+para o fixado, se a exceção for capturada o erro é impresso e retorna false. Se não for encontrado erro com o scanner, é
+criado um objeto Comentario que recebe os parametros dados pelo usuario. Dentro de uma estrutura de condição, se verifica
+se o comentario é fixado, se for ele é adicionado a lista de comentarios na posição da qtde_fixados, isso fara com que os
+comentarios fixados mais antigos estejam sempre a frente. Se o comentario não for fixado então ele será adicionado a lista
+de comentario na ultima posição disponivel. Por fim o metodo retorna verdadeiro.
+
+getVideo: Retorna o valor do atributo video.
+
+getData_postagem: Retorna o valor da data_postagem.
+
+getQtde_fixados: Retorna o valor de fixados.
+
+getLista_comentarios: Retorna listagem de Comentarios dentro da lista_comentarios.
+
+getComentario: Recebe um parametro posicao e retorna o objeto da lista_comentarios não posição recebida.
+
+Não usamos metodos sets, pois ja existem formas de dar valor a esses argumentos que nos permitem evitar erros no programa.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+- Classe Comentario: A classe comentario contém as informações de um comentario, ela formado por quatro atributos, quatro
+métodos get e um contrutor.
+
+Comentario: Metodo construtor da classe Comentario, ele recebe os parametros new_texto e new_fixado. Após isso, ele altera
+o valor dos atributos texto e fixado para seus novos valores, atualiza a data para a data atual e muda o valor do tamanho
+para o tamanho do novo texto.
+
+getTamanho: Retorna o valor do atributo tamanho.
+
+getData: Retorna o valor do atributo data.
+
+getFixado: Retorna o valor do atributo fixado.
+
+getTexto: Retorna o valor do atributo texto.
+
+setTexto: Recebe uma String como parametro, texto recebe a nova String a data e tamanho são alterados para data atual e
+para o tamanho da nova String respectivamente.
+
+Por não haver um metodo de edição de video edição do texto é permitida porem a data e o tamanho são atualizados no momento
+da edição. O fixado não pode ser alterado.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+========== Main ==========
+
+A classe Main é formada por quatorze métodos.
+Eles são os seguintes:
+
+main: A main é responsavel por chamar doze métodos. Esses métodos são as tentativas pedidas no enunciado do trabalho, foi
+optado por separar cada uma das tentativas em métodos diferentes e chama-los separadamente na main.
+
+tentativa1: O objetivo desse método é fazer uma tentativa de postagem com foto ( no enunciado é pedido uma tentativa com texto
+porém foi interpretado que foi um erro de digitação e seria na verdade um postagem com foto ). O primeiro passo do método é
+criar um objeto do tipo Foto chamado foto1, dando todos os parametros de forma válida, em seguida é usado o método getPostavel
+para criar um objeto do tipo PostFoto. Com o objeto PostFoto em mãos o método adicionaFoto é chamado, passando foto1 como
+parametro, a postagem recebe tambem uma localização através do método setLocalizacao. Finalizados os preparativos, em uma
+estrutura de condição, o metodo posta é chamado, se ele for verdadeiro, será impresso todos os atributos dos objetos criados
+e sera impresso que a postagem foi feita com sucesso. Se o método posta retornar falso, será impresso apenas que a postagem falhou.
+A impressão dos métodos é feita usando o metodo print, e os métodos get são usados parar pegar os valores a serem impressos.
+
+tentativa2: Semelhante ao método tentativa1, o objetivo desse método é fazer uma tentativa de postagem, dessa vez com um video
+atribuido. Novamente, o primeiro passo do método é criar um objeto do tipo Video chamado video1, dando todos os parametros de
+forma válida, em seguida é usado o método getPostavel para criar um objeto do tipo PostVideo. Com o objeto PostVideo em mãos
+o método adicionaVideo é chamado, passando video como parametro. Finalizados os preparativos, em uma estrutura de condição,
+o metodo posta é chamado, se ele for verdadeiro, será impresso todos os atributos dos objetos criados e sera impresso que
+a postagem foi feita com sucesso. Se o método posta retornar falso, será impresso apenas que a postagem falhou.
+
+tentativa3: O objetivo desse método e fazer uma tentativa de postagem sem video atribuido. Nessa tentativa o método getPostavel
+é usado para criar um objeto PostVideo, em seguida, sem a adição de um video a postagem, o método posta é chamado dentro de
+uma estrutura de condição. Se o método posta retornar verdadeiro, os atributos de todos os objetos são impressos junto a uma
+mensagem de postagem feita com sucesso, se retornar falso, apenas a mensagem de falha na postagem será impressa.
+
+tentativa4: Semelhante a tentativa3, esse método é uma tentativa de postagem sem foto atribuida. Nessa tentativa o método getPostavel
+é usado para criar um objeto PostFoto, em seguida, sem a adição de uma foto a postagem, o método posta é chamado dentro de
+uma estrutura de condição. Se o método posta retornar verdadeiro, os atributos de todos os objetos são impressos junto a uma
+mensagem de postagem feita com sucesso, se retornar falso, apenas a mensagem de falha na postagem será impressa.
+
+tentativa5: Esse método tem o objetivo de fazer uma tentativa de postagem com cinco fotos atribuidas. Assim como nos outros
+métodos, o método getPostavel é usado para criar um objeto do tipo PostFoto. Em seguida são criados cinco objetos do tipo
+Foto, e o método adicionaFoto é usado cinco vezes, respectivamente para cada um dos objetos. Após adicionar as fotos a postagem
+novamente em uma estrutura de condição o método posta é chamado, se ele retornar verdadeiro, os atributos de todos os objetos
+criados são impressos além da mensagem de sucesso ao postar, se retornar falso, apenas será impresso falha ao postar.
+Durante a impressão dos atributos uma estrutura de repetição é usada devido a grande quantidade de objetos Foto, esse loop
+começa do 0 e vai até o tamanho da lista de fotos, imprimindo os atributos de cada Foto dentro da lista.
+
+tentativa6: Esse método tem o objetivo de fazer uma tentativa de postagem com onze fotos atribuidas. Assim como nos outros
+métodos, o método getPostavel é usado para criar um objeto do tipo PostFoto. Em seguida são criados onze objetos do tipo
+Foto, e o método adicionaFoto é usado cinco vezes, respectivamente para cada um dos objetos. Após adicionar as fotos a postagem
+novamente em uma estrutura de condição o método posta é chamado, se ele retornar verdadeiro, os atributos de todos os objetos
+criados são impressos além da mensagem de sucesso ao postar, se retornar falso, apenas será impresso falha ao postar.
+Semelhante a tentativa5, devido a grande quantidade de objetos Foto cujo os atributos devem ser impressos, foi ultilizado
+uma estrutura de repetição para otimizar o código.
+
+tentativa7: O objetivo desse método é fazer um comentario em uma postagem com foto. O primeiro passo do método é
+criar um objeto do tipo Foto chamado foto1, dando todos os parametros de forma válida, em seguida é usado o método getPostavel
+para criar um objeto do tipo PostFoto. Com o objeto PostFoto em mãos o método adicionaFoto é chamado, passando foto1 como
+parametro, a postagem recebe tambem uma localização através do método setLocalizacao. Em seguida em uma estrutura de condição
+o método posta é chamado, se ele retornar falso, apenas será impresso falha ao postar, se ele retornar verdadeiro, a mensagem
+postagem feita com sucesso é impressa e o método comenta é chamado dentro de uma estrutura de condição, se ele retornar
+verdadeiro, todos os atributos dos objetos criados são impressos junto com a mensagem comentario feito com sucesso, se falhar
+apenas a mensagem falha ao comentar será impressa.
+
+tentativa8: O objetivo desse método é fazer um comentario em uma postagem com video. Inicialmente será criado um objeto do
+tipo Video chamado video1, dando todos os parametros de forma válida, em seguida é usado o método getPostavel para criar
+um objeto do tipo PostVideo. Com o objeto PostVideo em mãos o método adicionaVideo é chamado, passando video1 como parametro.
+Em seguida em uma estrutura de condição o método posta é chamado, se ele retornar falso, apenas será impresso falha ao postar,
+se ele retornar verdadeiro, a mensagem postagem feita com sucesso é impressa e o método comenta é chamado dentro de uma
+estrutura de condição, se ele retornar verdadeiro, todos os atributos dos objetos criados são impressos junto com a mensagem
+comentario feito com sucesso, se falhar apenas a mensagem falha ao comentar será impressa.
+
+tentativa9: O objetivo do método e fazer uma tentativa de postagem com video inválido. Dessa maneira, ao criar inicialmente
+um objeto do tipo Video chamado video1, o parametro passado da Url será de um formato invalido, nessa tentativa o fim da
+String é .mKv, após criar o objeto video, é usado o método getPostavel para criar um objeto do tipo PostVideo. O adicionaVideo
+é chamado, passando video1 como parametro. Por fim, o método posta é chamado dentro de uma estrutura de condição, se ele
+retorna verdadeiro, os atributos de todos os objetos criados são impressos junto a mensagem postagem feita com sucesso,
+se retorna falso, apenas a mensagem falha ao postar é impressa.
+
+tentativa10: O objetivo do método e fazer uma tentativa de postagem com foto inválida. Dessa maneira, ao criar inicialmente
+um objeto do tipo Foto chamado foto1, o parametro passado da Url será de um formato invalido, nessa tentativa o fim da
+String é .gif, após criar o objeto video, é usado o método getPostavel para criar um objeto do tipo PostFoto. O adicionaFoto
+é chamado, passando foto1 como parametro. Por fim, o método posta é chamado dentro de uma estrutura de condição, se ele
+retorna verdadeiro, os atributos de todos os objetos criados são impressos junto a mensagem postagem feita com sucesso,
+se retorna falso, apenas a mensagem falha ao postar é impressa.
+
+Nas tentativas9 e 10, os atributos do Comentario são dados através do scanner, podendo retornar erros caso inseridos argumentos
+invalidos.
+
+tentativa11: O objetivo desse método é tentar criar um objeto PostVideo, passando um parametro invalido para getPostavel.
+O objeto Video é criado com parametros validos, em seguida o método getPostavel é chamado, tendo como parametro a String
+inválida VIDEO. Por fim, o método posta é chamado dentro de uma estrutura de condição, se ele retorna verdadeiro, os atributos
+de todos os objetos criados são impressos junto a mensagem postagem feita com sucesso, se retorna falso, apenas a mensagem
+falha ao postar é impressa. Para manter o funcionamento do código, uma tentativa de captura de exceção é feita, como ao
+passar um parametro invalido, getPostavel retorna null. PostVideo estará com valor null, assim, captura feita é de um
+NullPointerException, caso a Exception seja capturada o erro é impresso.
+
+tentativa12: O objetivo desse método é tentar criar um objeto PostFoto, passando uma classe invalida para getPostavel.
+O objeto Foto é criado com parametros validos, em seguida o método getPostavel é chamado, tendo como parametro POSTVIDEO.
+Por fim, o método posta é chamado dentro de uma estrutura de condição, se ele retorna verdadeiro, os atributos de todos os
+objetos criados são impressos junto a mensagem postagem feita com sucesso, se retorna falso, apenas a mensagem falha ao
+postar é impressa. Para manter o funcionamento do código, uma tentativa de captura de exceção é feita, pois ao passar como
+parametro POSTVIDEO, getPostavel retorna PostVideo. Assim ocorrerá uma Exception do tipo ClassCastException, dessa forma
+a captura feita é de um ClassCastException, caso a Exception seja capturada o erro será impresso.
+
+getAtributosFoto: Esse método é usado para imprimir os atributos de um objeto foto, ele foi feito para facilitar a impressão
+nos outros métodos devido a quantidade de fotos que precisaram ser impressas durante as tentativas. O método, ultiliza dos
+métodos get para receber os valores dos atributos e do método print para imprimir eles.
+
+========== Resultado das tentativas ==========
+
+tentativa1: tentativa de postagem com foto atribuida
+
+Postagem feita com sucesso
+Lista de fotos: [sistema.estrutura.Foto@7b23ec81]
+Quantidade de fotos: 1
+Localizacao: Kanto
+Data da postagem: 2023-06-29T01:15:28.213821300
+ID da Foto: 1
+URL da Foto: Foto_com_um_Pikachu.png
+Resolucao da Foto: 1500x1000
+Lista de comentarios: []
+Quantidade de fixados: 0
+
+tentativa 2: tentativa de postagem com video atribuido
+
+Postagem feita com sucesso
+Video: sistema.estrutura.Video@3feba861
+Data da postagem: 2023-06-29T01:15:28.215821900
+ID do Video1: 2
+URL do Video1: Shrek2.mp4
+Frame rate do video: 60 fps
+Duracao do video: 93 min
+Lista de comentarios: []
+Quantidade de fixados: 0
+
+tentativa 3: tentativa de postagem sem video
+
+Error = java.lang.NullPointerException: Nao ha video ligado a postagem
+Falha ao postar
+
+tentativa 4: tentativa de postagem sem foto
+
+Error = java.lang.NullPointerException: Nao ha foto ligado a postagem
+Falha ao postar
+
+tentativa 5: tentativa de postagem com 5 fotos atribuidas
+
+Postagem feita com sucesso
+Lista de fotos: [sistema.estrutura.Foto@506e1b77, sistema.estrutura.Foto@4fca772d, sistema.estrutura.Foto@9807454, sistema.estrutura.Foto@3d494fbf, sistema.estrutura.Foto@1ddc4ec2]
+Quantidade de fotos: 5
+Localizacao: Lar doce lar
+Data da postagem: 2023-06-29T01:15:28.226824400
+ID da Foto: 3
+URL da Foto: Super_Capivara.jpg
+Resolucao da Foto: 3840x2160
+ID da Foto: 4
+URL da Foto: Submarino_perdido.bpm
+Resolucao da Foto: 640x360
+ID da Foto: 5
+URL da Foto: Um_portal_dentro_do_armario.png
+Resolucao da Foto: 854x480
+ID da Foto: 6
+URL da Foto: Autoretrato_nao_tao_belo.bpm
+Resolucao da Foto: 1280x720
+ID da Foto: 7
+URL da Foto: Print_do_filme_do_Homem_Aranha.png
+Resolucao da Foto: 1920x1080
+Lista de comentarios: []
+Quantidade de fixados: 0
+
+tentativa6: tentativa de postagem com 11 fotos atribuidas
+
+Erro = java.lang.ArrayIndexOutOfBoundsException: Ultrapassou o limite maximo de 10 fotos
+Falha ao postar
+
+tentativa7: tentativa de criação de comentario em postagem com foto (Pode dar erro caso seja inserido um argumento invalido
+em fixado)
+
+Postagem feita com sucesso
+Texto do comentario:
+Feio
+fixado? true/false:
+False
+Postagem feita com sucesso
+Lista de fotos: [sistema.estrutura.Foto@5010be6]
+Quantidade de fotos: 1
+Localizacao: Academia
+Data da postagem: 2023-06-29T01:15:28.227824900
+ID da Foto: 19
+URL da Foto: Homem_malhado.png
+Resolucao da Foto: 1920x1080
+Lista de comentarios: [sistema.postagem.Comentario@685f4c2e]
+Quantidade de fixados: 0
+Data do comentario: 2023-06-29T01:15:43.823184800
+Comentario fixado: false
+Texto do comentario: Feio
+Tamanho do texto: 4 caracteres
+Comentario feito com sucesso
+
+tentativa8: tentativa de criação de comentario em postagem com video (Pode dar erro caso seja inserido um argumento invalido
+em fixado)
+
+Postagem feita com sucesso
+Texto do comentario:
+gomu gomuuuuuu
+fixado? true/false:
+true
+Video: sistema.estrutura.Video@7daf6ecc
+Data da postagem: 2023-06-29T01:15:43.824185900
+ID do Video1: 20
+URL do Video1: One_Piece_EP_1000.mp4
+Frame rate do video: 30 fps
+Duracao do video: 24 min
+Lista de comentarios: [sistema.postagem.Comentario@2e5d6d97]
+Quantidade de fixados: 1
+Data do comentario: 2023-06-29T01:20:02.872800700
+Comentario fixado: true
+Texto do comentario: gomu gomuuuuuu
+Tamanho do texto: 14 caracteres
+Comentario feito com sucesso
+
+tentativa9: tentativa de criação de video invalido
+
+Erro = java.lang.IllegalArgumentException: Formato de arquivo invalido, insira ou .mp4, .mov, .wmv
+Error = java.lang.NullPointerException: Nao ha video ligado a postagem
+Falha ao postar
+
+tentativa10: tentativa de criação de foto invalida.
+
+Erro = java.lang.IllegalArgumentException: Formato de arquivo invalido, insira ou .jpg, .png, .bpm
+Error = java.lang.NullPointerException: Nao ha foto ligado a postagem
+Falha ao postar
+
+tentativa11: tentativa de criação de postVideo com argumento invalido.
+
+Erro = java.lang.IllegalArgumentException: Insira POSTVIDEO ou POSTFOTO
+ERRO = java.lang.NullPointerException: Cannot invoke "sistema.postagem.PostVideo.adicicionaVideo(sistema.estrutura.Video)" because "postVideo" is null: o valor de postVideo e null
+
+tentativa12: tentativa de criação de postFoto com classe invalida.
+
+Erro = java.lang.ClassCastException: class sistema.postagem.PostVideo cannot be cast to class sistema.postagem.PostFoto (sistema.postagem.PostVideo and sistema.postagem.PostFoto are in unnamed module of loader 'app'): Classe esperada = PostFoto
+
+========== Provocação Teórica ==========
+
+- Singleton de Feed: O singleton de feed pensado possui cinco métodos e dois atributos. O objetivo do singleton é guardar
+as postagens feitas dentro de uma só classe, esse feed é compartilhado entre todos os objetos do tipo postavel. A ideia
+seria que quando o método posta fosse chamado e retornasse verdadeiro, a postagem seria adicionada ao feed. Os atributos
+da classe são instance do tipo SingletonFeed e feed do tipo lista Postavel, onde serão armazenados os posts. Os métodos
+do singleton são o contrutor privado, sem corpo, o método getInstance, que verifica se instance é null, se for ele cria
+um novo objeto SingletonFeed, em seguida retorna instance. Foi pensado também no método adicionaPostagem, que recebe um
+Postavel como parametro e adiciona ao feed, e o método removePostagem, que também recebe Postavel porém remove o objeto
+do feed. Por fim, o método getFeed que retorna a listagem de objetos Postavel no feed.

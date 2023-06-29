@@ -1,6 +1,7 @@
 package sistema.postagem;
 
 import sistema.estrutura.Video;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;

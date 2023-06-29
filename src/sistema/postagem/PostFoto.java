@@ -1,5 +1,6 @@
 package sistema.postagem;
 
+import sistema.SingletonFeed;
 import sistema.estrutura.Foto;
 
 import java.time.LocalDateTime;
@@ -54,7 +55,7 @@ public class PostFoto implements Postavel {
 
         public boolean posta() {
             try {
-                if (qtde_fotos < 1) {
+                if (qtde_fotos == 0) {
                     throw new NullPointerException(); //Porque se a Array possui 0 elementos o valor dela passa a ser nulo
                 }
             }catch (NullPointerException e){
@@ -82,7 +83,7 @@ public class PostFoto implements Postavel {
             boolean fixado = sc.nextBoolean();
             Comentario comentario = new Comentario(texto, fixado);
             if(fixado) {
-                this.listaComentarios.add(qtde_fixados, comentario); //Nao sei se ta certo
+                this.listaComentarios.add(qtde_fixados, comentario);
                 this.qtde_fixados += 1;
             }else {
                 this.listaComentarios.add(comentario);
