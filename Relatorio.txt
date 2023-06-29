@@ -513,5 +513,5 @@ seria que quando o método posta fosse chamado e retornasse verdadeiro, a postag
 da classe são instance do tipo SingletonFeed e feed do tipo lista Postavel, onde serão armazenados os posts. Os métodos
 do singleton são o contrutor privado, sem corpo, o método getInstance, que verifica se instance é null, se for ele cria
 um novo objeto SingletonFeed, em seguida retorna instance. Foi pensado também no método adicionaPostagem, que recebe um
-Postavel como parametro e adiciona ao feed, e o método removePostagem, que também recebe Postavel porém remove o objeto
+Postavel como parametro e adiciona ao feed, e no método removePostagem, que também recebe Postavel porém remove o objeto
 do feed. Por fim, o método getFeed que retorna a listagem de objetos Postavel no feed.

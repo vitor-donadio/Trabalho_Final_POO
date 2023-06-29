@@ -1,8 +1,6 @@
-import sistema.SingletonFeed;
 import sistema.estrutura.Foto;
 import sistema.estrutura.PostavelFactory;
 import sistema.estrutura.Video;
-import sistema.postagem.Comentario;
 import sistema.postagem.PostFoto;
 import sistema.postagem.PostVideo;
 
